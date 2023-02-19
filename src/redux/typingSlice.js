@@ -40,14 +40,18 @@ export const typingSlice = createSlice({
         if(state.starting){document.getElementById(`item${i}`).classList = "askedSpan"}
         wordArr.push(giren);
       }
-      console.log(wordArr);
       state.wordsShown = wordArr;
       state.starting = true;
       state.lineAt = 0;
     },
     answerSet: (state, action) => {
       state.answer = action.payload;
-      console.log(state.answer);
+      if(state.answer.toLocaleLowerCase(state.language ? "tr" : "en") !== state.wordsShown[state.lineAt][state.language ? "turkish" : "english"].toLocaleLowerCase(state.language ? "tr" : "en").slice(0,action.payload.length)){
+        document.getElementById(`item${state.lineAt}`).classList.add("wrong");
+      }
+      else{
+        document.getElementById(`item${state.lineAt}`).classList.remove("wrong");
+      }
     },
     answered: (state) => {
       state.totalChar += state.answer.length;      
@@ -62,9 +66,11 @@ export const typingSlice = createSlice({
         document.getElementById(`item${state.lineAt}`).classList.add("wrong");
         state.wrongs.push(state.answer)
       }
+      document.getElementById(`item${state.lineAt}`).classList.remove("working");
       state.lineAt += 1;
       state.answer = "";
-      state.space = false
+      state.space = false;
+      state.lineAt < (state.eachTime) ? document.getElementById(`item${state.lineAt}`).classList.add("working") : document.getElementById(`item0`).classList.add("working");
     },
     startTyping: (state) => {
       state.started = true

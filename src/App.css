@@ -15,10 +15,14 @@ span.askedSpan{
 }
 
 span.right{
-  background: rgba(0,255,0,.5);
+  color: rgb(0,255,0);
 }
 span.wrong{
-  background: rgba(255,0,0,.5);
+  color: rgb(255,0,0);
+}
+
+span.working{
+  background: #ccc;
 }
 
 #finish{

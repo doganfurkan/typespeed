@@ -27,11 +27,10 @@ export default function Main() {
     }
     else{
       dispatch(answered())
-      setTimeout(() => {dispatch(bringWords())},300)
+      dispatch(bringWords())
     }
   }
   const handleChange = (e) => {
-    console.log("change")
     if(!started){dispatch(startTyping()); setInterval(() => {dispatch(setTime())},1000)}
     if(e.target.value[e.target.value.length - 1] !== " "){dispatch(answerSet(e.target.value))}
     else{
@@ -52,7 +51,7 @@ export default function Main() {
           <Card bg={theme ? "dark" : ""}>
             <Card.Body>
               {wordsShown.map((item,key) => {
-                return <span key={key} id={`item${key}`} className="askedSpan">{language ? item.turkish : item.english}</span>
+                return <span key={key} id={`item${key}`} className={key === 0 ? "askedSpan working" : "askedSpan"}>{language ? item.turkish : item.english}</span>
               })}
             </Card.Body>
           </Card>

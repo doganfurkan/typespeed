@@ -14,7 +14,7 @@ export default function Finished() {
     <div id="finish">
       <Card className="text-center">
         <Card.Body>
-          <Card.Title>{language ? "Süre Doldu" : "Time's Up"}</Card.Title>
+          <Card.Title className="py-2">{language ? "Süre Doldu" : "Time's Up"}</Card.Title>
           <Table bordered hover>
             <tbody>
               <tr>
